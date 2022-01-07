@@ -39,5 +39,8 @@ allprojects {
                 url "http://maven.oa.com/nexus/content/repositories/thirdparty-snapshots/"
             }
         }
+        jcenter()
+        google()
+        mavenCentral()
     }
 }
