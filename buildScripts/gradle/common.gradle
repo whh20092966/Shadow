@@ -25,15 +25,9 @@ allprojects {
     }
     ext.ARTIFACT_VERSION = ext.VERSION_NAME + ext.VERSION_SUFFIX
     repositories {
-        maven {
-            url "http://maven.oa.com/nexus/content/repositories/google-maven/"
-        }
-        maven {
-            url "http://maven.oa.com/nexus/content/repositories/jcenter"
-        }
-        maven {
-            url "http://maven.oa.com/nexus/content/repositories/thirdparty/"
-        }
+        jcenter()
+        google()
+        mavenCentral()
         if (!"${System.env.PUBLISH_RELEASE}".equalsIgnoreCase("true")) {
             maven {
                 url "http://maven.oa.com/nexus/content/repositories/thirdparty-snapshots/"

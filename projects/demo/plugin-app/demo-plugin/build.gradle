@@ -8,12 +8,9 @@ android {
 
 buildscript {
     repositories {
-        maven {
-            url "http://maven.oa.com/nexus/content/repositories/jcenter"
-        }
-        maven {
-            url "http://maven.oa.com/nexus/content/repositories/google-maven/"
-        }
+        jcenter()
+        google()
+        mavenCentral()
     }
 
     dependencies {
