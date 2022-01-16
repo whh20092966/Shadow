@@ -36,6 +36,7 @@ public class ShadowFragment {
     private static Map<String, Constructor<?>> constructorMap = new HashMap<>();
 
     private static IContainerFragment instantiateContainerFragment(ShadowFragment shadowFragment) {
+        //这个类名，不是ShadowFragment,  一个子类
         String shadowFragmentClassname = shadowFragment.getClass().getName();
         String containerFragmentClassName = shadowFragmentClassname.substring(0, shadowFragmentClassname.length() - 1);
         Constructor<?> constructor = constructorMap.get(containerFragmentClassName);
@@ -90,6 +91,8 @@ public class ShadowFragment {
         return mContainerFragment;
     }
 
+    //TODO getActivity  才需要 重写 fragment ??, 如果没有代理Fragment, 那么它就会直接使用了宿主的 activity,
+    //TODO 那么那在插件activity中重写的并添加了插件自已的东西方法就会失效，比如， getResource 方法等
     final public ShadowActivity getActivity() {
         if (mAttachedContext == null) {
             return null;

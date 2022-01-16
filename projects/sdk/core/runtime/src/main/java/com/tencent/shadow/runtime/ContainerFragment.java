@@ -53,6 +53,7 @@ public class ContainerFragment extends Fragment implements IContainerFragment {
     }
 
     private static ShadowFragment instantiatePluginFragment(ContainerFragment containerFragment, Context context) {
+        //这个类是啥时候生成的? -> transform 过程中修改插件中的类名
         String pluginFragmentClassName = containerFragment.getClass().getName() + "_";
         Constructor<?> constructor = constructorMap.get(pluginFragmentClassName);
         if (constructor == null) {

@@ -167,6 +167,7 @@ class ShadowTransform(project: Project, classPoolBuilder: ClassPoolBuilder, val 
         val fragmentsName = listOf(mAppFragments, mAppDialogFragments).flatten().flatMap { listOf(it.name) }
         forEachAppClass { ctClass ->
             fragmentsName.forEach { fragmentName ->
+                //把插件中更改插件中的 fragment 类型，如  XXXFragment 添加后缀 XXXFragment_
                 ctClass.replaceClassName(fragmentName, fragmentName.appendFragmentAppendix())
             }
         }
@@ -190,6 +191,8 @@ class ShadowTransform(project: Project, classPoolBuilder: ClassPoolBuilder, val 
 
                 inputClass.renameOutput(originalFragmentName, it.name)
 
+                //重新生成一个容器类，并且这个容器是继承于 ContainerFragment的，而且这个类的的名就是就是插件中使用的名字。
+                //到这里，容器类使用的名字就是 插件代码中用的类名， 而插件中使用的类名则为 插件类名加后缀_
                 val newContainerFragmentCtClass = classPool.makeClass(originalFragmentName, container)
                 when (inputClass) {
                     is DirInputClass -> {
