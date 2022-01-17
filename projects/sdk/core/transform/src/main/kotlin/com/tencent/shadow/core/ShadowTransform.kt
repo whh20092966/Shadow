@@ -288,6 +288,8 @@ class ShadowTransform(project: Project, classPoolBuilder: ClassPoolBuilder, val 
         for( ctAndroidMethod in method_parse) {
             for (ctShadowMedthod in shadow_method_parse) {
                 if( ctAndroidMethod.methodInfo.descriptor == ctShadowMedthod.methodInfo.descriptor){
+
+                    //从字节码上，修改android 原生的 Uri 中的 parse 方法
                     codeConverter.redirectMethodCall(ctAndroidMethod, ctShadowMedthod)
                 }
             }

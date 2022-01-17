@@ -39,6 +39,7 @@ class PluginContentProviderManager() : UriParseDelegate {
             val originalAuthority = if (index != -1) uriContent.substring(0, index) else uriContent
             val containerAuthority = getContainerProviderAuthority(originalAuthority)
             if (containerAuthority != null) {
+                //替换成容器的ContentProvider的 URI
                 return Uri.parse("$CONTENT_PREFIX$containerAuthority/$uriContent")
             }
         }
